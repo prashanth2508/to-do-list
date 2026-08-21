@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To-Do-List</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <span class="mark">TD</span>
+    <h1>To-Do-List</h1>
+  </div>
+  <button class="theme-toggle" id="themeToggle">Dark mode</button>
+</header>
+
+<main>
+
+  <section class="stats">
+    <div class="stat">
+      <div class="num" id="statTotal">0</div>
+      <div class="label">Total</div>
+    </div>
+    <div class="stat">
+      <div class="num" id="statPending">0</div>
+      <div class="label">Pending</div>
+    </div>
+    <div class="stat">
+      <div class="num" id="statCompleted">0</div>
+      <div class="label">Completed</div>
+    </div>
+    <div class="stat">
+      <div class="num" id="statOverdue">0</div>
+      <div class="label">Overdue</div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Add a task</h2>
+    <form id="taskForm" novalidate>
+      <div class="form-grid">
+        <div class="full">
+          <label for="titleInput">Task title</label>
+          <input type="text" id="titleInput" maxlength="120" placeholder="e.g. Finish DBMS assignment">
+          <div class="field-error" id="titleError"></div>
+        </div>
+
+        <div>
+          <label for="categoryInput">Category</label>
+          <select id="categoryInput">
+            <option value="General">General</option>
+            <option value="Academics">Academics</option>
+            <option value="Project">Project</option>
+            <option value="Personal">Personal</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="priorityInput">Priority</label>
+          <select id="priorityInput">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="dueDateInput">Due date</label>
+          <input type="date" id="dueDateInput">
+        </div>
+
+        <div class="full">
+          <label for="notesInput">Notes (optional)</label>
+          <textarea id="notesInput" rows="2" maxlength="300" placeholder="Any extra detail"></textarea>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button type="submit" class="btn btn-primary" id="submitBtn">Add task</button>
+        <button type="button" class="btn" id="cancelEditBtn" style="display:none;">Cancel edit</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="panel">
+    <h2>Search &amp; filter</h2>
+    <div class="toolbar">
+      <div class="field">
+        <label for="searchInput">Search</label>
+        <input type="text" id="searchInput" placeholder="Search by title or notes">
+      </div>
+      <div class="field">
+        <label for="statusFilter">Status</label>
+        <select id="statusFilter">
+          <option value="all">All</option>
+          <option value="pending">Pending</option>
+          <option value="completed">Completed</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="categoryFilter">Category</label>
+        <select id="categoryFilter">
+          <option value="all">All</option>
+          <option value="General">General</option>
+          <option value="Academics">Academics</option>
+          <option value="Project">Project</option>
+          <option value="Personal">Personal</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="priorityFilter">Priority</label>
+        <select id="priorityFilter">
+          <option value="all">All</option>
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="sortBy">Sort by</label>
+        <select id="sortBy">
+          <option value="created">Date added</option>
+          <option value="due">Due date</option>
+          <option value="priority">Priority</option>
+          <option value="title">Title</option>
+        </select>
+      </div>
+    </div>
+  </section>
+ <section>
+    <div class="task-list" id="taskList"></div>
+    <div class="empty-state" id="emptyState" style="display:none;">
+      No tasks match. Add a task above, or adjust your search and filters.
+    </div>
+  </section>
+</main>
+<div class="modal-overlay hidden" id="deleteModal">
+  <div class="modal">
+    <h2>Delete this task?</h2>
+    <p class="modal-hint">This can't be undone.</p>
+    <div class="btn-row">
+      <button class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+      <button class="btn" id="cancelDeleteBtn">Cancel</button>
+    </div>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
